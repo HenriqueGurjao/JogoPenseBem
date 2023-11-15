@@ -1,11 +1,30 @@
 import "./App.css";
 import HomeJogar from "./components/jogo/HomeJogar";
 import HomeAddJogo from "./components/HomeAddJogo";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("home"); // Inicializa a página como 'home'
-// mudar o valor de "jogar" para "home"
+  const [currentPage, setCurrentPage] = useState("home");
+
+  // Adicione um ouvinte de evento popstate para tratar as alterações de URL do navegador
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname.replace('/', '');
+      setCurrentPage(path);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
+
+  // Atualize a URL com base na página atual
+  useEffect(() => {
+    window.history.pushState(null, '', `/${currentPage}`);
+  }, [currentPage]);
+
   const handleJogarClick = () => {
     setCurrentPage("jogar");
   };
@@ -18,7 +37,7 @@ function App() {
     <div>
       <div>
         {currentPage === "home" && (
-          <div className="h-screen bg-[#CCCCCC] flex justify-center" >
+          <div className="h-screen bg-[#CCCCCC] flex justify-center">
             <div className="grid content-center">
               <div className="bg-[#EEEEBB] w-[65rem] h-[50rem] grid content-evenly">
                 <div className="text-center text-5xl font-bold">
