@@ -1,3 +1,4 @@
+import { ArrowCircleLeft, ArrowCircleRight } from "phosphor-react";
 import { useState } from "react";
 
 function HomeJogar() {
@@ -107,7 +108,7 @@ function HomeJogar() {
               <div className="flex justify-center mb-5 md:mb-0">
                 <div className="flex justify-center text-3xl mx-4 p-2 font-bold w-full">
                   <button
-                    className="w-7/12 md:w-72 border p-2 bg-green-600 rounded-full border border-black"
+                    className="w-7/12 md:w-72 border select-none p-2 bg-green-600 rounded-full border border-black"
                     onClick={handleJogar}
                   >
                     JOGAR
@@ -119,7 +120,7 @@ function HomeJogar() {
         </div>
       )}
       {playGame === "jogar" && (
-        <div className="h-screen bg-[#f07049] flex ">
+        <div className="h-screen bg-zinc-700 flex ">
           <div
             id="Box_jogo"
             className="border h-screen bg-[#CCCCCC] grid content-center "
@@ -160,7 +161,7 @@ function HomeJogar() {
                     type="button"
                     id="botaoA"
                     value="A"
-                    className="w-32 h-32 m-3 hover:bg-red-600 bg-red-500 border-2 border-black text-white text-2xl rounded-lg"
+                    className="w-32 h-32 m-3 hover:bg-red-600 select-none bg-red-500 border-2 border-black text-white text-2xl rounded-lg"
                     onClick={() => jogar("A")}
                   >
                     A
@@ -171,7 +172,7 @@ function HomeJogar() {
                     type="button"
                     id="botaoB"
                     value="B"
-                    className="w-32 h-32 m-3 hover:bg-yellow-600 bg-yellow-500 border-2 border-black text-white text-2xl rounded-lg"
+                    className="w-32 h-32 m-3 hover:bg-yellow-600 bg-yellow-500 border-2 border-black text-white select-none text-2xl rounded-lg"
                     onClick={() => jogar("B")}
                   >
                     B
@@ -184,7 +185,7 @@ function HomeJogar() {
                     type="button"
                     id="botaoC"
                     value="C"
-                    className="w-32 h-32 m-3 hover:bg-blue-600 bg-blue-500 border-2  border-black text-white text-2xl rounded-lg"
+                    className="w-32 h-32 m-3 hover:bg-blue-600 bg-blue-500 border-2  border-black text-white select-none text-2xl rounded-lg"
                     onClick={() => jogar("C")}
                   >
                     C
@@ -195,7 +196,7 @@ function HomeJogar() {
                     type="button"
                     id="botaoD"
                     value="D"
-                    className="w-32 h-32 m-3 hover:bg-green-600 bg-green-500 border-2 border-black text-white text-2xl rounded-lg"
+                    className="w-32 h-32 m-3 hover:bg-green-600 bg-green-500 border-2 border-black select-none text-white text-2xl rounded-lg"
                     onClick={() => jogar("D")}
                   >
                     D
@@ -206,7 +207,7 @@ function HomeJogar() {
             <div className="flex justify-center mb-5 md:mb-0">
               <div className="text-xl mx-2 p-2 font-bold">
                 <button
-                  className="min-w-full md:w-52 border p-2 bg-[#EEEEBB] rounded-full border border-black"
+                  className="min-w-full md:w-52 border p-2 bg-[#EEEEBB] rounded-full select-none border-black"
                   onClick={handleVolta}
                 >
                   inserir outro codigo
@@ -214,7 +215,7 @@ function HomeJogar() {
               </div>
               <div className="text-xl mx-2 p-2 font-bold">
                 <button
-                  className="min-w-full md:w-52 border p-2 bg-[#EEEEBB] rounded-full border border-black"
+                  className="min-w-full md:w-52  p-2 bg-[#EEEEBB] rounded-full border select-none border-black"
                   onClick={handleSairDoJogo}
                 >
                   sair
@@ -222,9 +223,29 @@ function HomeJogar() {
               </div>
             </div>
           </div>
-          <div className="bg-black text-center text-white w-40 h-40">
-            <h1>livro</h1>
+          <div className=" grid content-center  w-full h-screen">
+              <div className="flex justify-between   w-full h-screen">
+                <div className=" grid content-center ml-6">
+                  <div className="" ><ArrowCircleLeft className="w-20 h-20 text-sky-500 hover:text-sky-700 cursor-pointer "/></div>
+                </div>
+                <div className=" grid content-center" >
+
+
+
+
+                  <h1 className=" text-6xl">livro</h1>
+
+
+                </div>
+                <div className=" grid content-center mr-6">
+                  <div className="" ><ArrowCircleRight className="w-20 h-20 text-sky-500 hover:text-sky-700 cursor-pointer"/></div>
+                </div>
+              </div>
+            
+
           </div>
+          
+          
         </div>
       )}
       {playGame === "ErroCod" && (
@@ -238,7 +259,7 @@ function HomeJogar() {
               <div className="flex justify-center mt-8 mb-5 md:mb-0">
                 <div className="text-3xl mx-4 p-2 font-bold">
                   <button
-                    className="min-w-full md:w-72 border p-2 bg-green-600 rounded-full border border-black"
+                    className="min-w-full md:w-72 border p-2 bg-green-600 select-none rounded-full border border-black"
                     onClick={handleVolta}
                   >
                     tentar novamente

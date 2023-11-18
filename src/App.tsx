@@ -45,10 +45,10 @@ function App() {
                 </div>
                 <div className="flex justify-center">
                   <div className="text-3xl mx-4 p-2 font-bold">
-                    <button className="w-48 border p-2 bg-green-600 rounded-full border border-black" onClick={handleJogarClick}>JOGAR</button>
+                    <button className="w-48 border p-2 bg-green-600 rounded-full border select-none border-black" onClick={handleJogarClick}>JOGAR</button>
                   </div>
                   <div className="text-3xl mx-4 p-2 font-bold">
-                    <button className="w-48 border p-2 bg-green-600 rounded-full border border-black" onClick={handleAddJogoClick}>ADD LIVRO</button>
+                    <button className="w-48 border p-2 bg-green-600 rounded-full border select-none border-black" onClick={handleAddJogoClick}>ADD LIVRO</button>
                   </div>
                 </div>
               </div>
