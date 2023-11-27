@@ -61,10 +61,11 @@ function HomeJogar() {
 
   const gabaritos: Record<string, string[]> = {
     "051": ["D", "C", "B", "D", "A", "A", "D", "C", "B", "B", "C", "D", "D", "B", "A", "B", "D", "A", "B", "A", "B", "D", "A", "C", "A", "C", "C", "B", "D", "A"],
-    "052": ["B", "A", "B", "D", "A", "C", "A", "C", "C", "B", "D", "D", "D", "B", "D", "C", "D", "D", "D", "A", "C", "A", "A", "B", "C", "A", "A", "B", "A", "D"],
+    "052": ["B", "A", "B", "D", "A", "C", "A", "C", "C", "B", "D", "D", "D", "B", "D", "C", "D", "D", "D", "A", "C", "A", "A", "B", "C", "A", "A", "B", "A", "D"], 
     "053": ["B", "B", "B", "C", "D", "C", "D", "D", "D", "A", "C", "A", "A", "B", "C", "B", "A", "D", "B", "B", "D", "D", "C", "C", "B", "A", "D", "B", "A", "D"],
     "054": ["B", "B", "D", "C", "C", "C", "B", "A", "D", "B", "A", "D", "B", "B", "D", "B", "B", "D", "A", "B", "D", "A", "B", "C", "C", "D", "D", "C", "C", "D"],
     "055": ["D", "A", "A", "C", "D", "B", "B", "D", "D", "B", "B", "D", "A", "B", "D", "B", "B", "D", "A", "B", "D", "D", "D", "C", "D", "C", "B", "B","B","A"],
+
   };
 
   const imagens: Record<string, string[]> = {
@@ -110,6 +111,13 @@ function HomeJogar() {
     setTentativa(1);
     setPontos(0);
   };
+  const handleRecomecar = () => {
+    setNum(1);
+    setPontos(0);
+    setTentativa(1);
+    setVisor1(`${programa} -> 1: `);
+    setVisor2("Tentativa 1 de 3");
+  };
 
   const handleSairDoJogo = () => {
     window.location.href = "http://localhost:5173/home";
@@ -117,36 +125,38 @@ function HomeJogar() {
   };
 
   const jogar = (resposta: string) => {
-    setVisor1(`${programa} -> ${num}: ${resposta}`);
-
     const respostaCorreta = gabaritos[programa];
-
+  
     if (respostaCorreta && respostaCorreta[num - 1] === resposta) {
       if (tentativa === 1) setPontos((prevPontos) => prevPontos + 3);
       else if (tentativa === 2) setPontos((prevPontos) => prevPontos + 2);
       else if (tentativa === 3) setPontos((prevPontos) => prevPontos + 1);
-
+  
       setNum((prevNum) => prevNum + 1);
       setTentativa(1);
-      setVisor1(`${programa} -> ${num}: `);
+      setVisor1(`${programa} -> ${num + 1}: `);
       setVisor2(`Tentativa ${tentativa} de 3`);
     } else {
       setTentativa((prevTentativa) => prevTentativa + 1);
-      setVisor2(`Tentativa ${tentativa} de 3`);
-
-      if (tentativa > 3) {
+  
+      if (tentativa > 2) {
         setNum((prevNum) => prevNum + 1);
         setTentativa(1);
-        setVisor1(`${programa} -> ${num}: `);
-        setVisor2(`Tentativa ${tentativa} de 3`);
+        setVisor1(`${programa} -> ${num + 1}: `);
+        setVisor2(`Tentativa 1 de 3`);
+      } else {
+        setVisor2(`Tentativa ${tentativa + 1} de 3`);
       }
     }
-
+  
     if (num > 30) {
       setVisor1("***FIM***");
       setVisor2(`Pontuação: ${pontos}`);
     }
   };
+
+  
+  
 
   return (
     <div>
@@ -285,6 +295,18 @@ function HomeJogar() {
                 </button>
               </div>
             </div>
+            <div className="flex justify-center mb-5 md:mb-0 ">
+              <div className="text-xl mx-2 p-2 font-bold w-full">
+                <button
+                  className="min-w-full md:w-80 border p-2 bg-[#EEEEBB] rounded-full select-none border-black"
+                  onClick={handleRecomecar}
+                >
+                  jogar de novo
+                </button>
+              </div>
+              
+            </div>
+           
           </div>
           <div className="grid content-center w-full h-screen">
             <div className="flex justify-between w-full h-screen">
@@ -318,7 +340,7 @@ function HomeJogar() {
             <div className="bg-[#EEEEBB] border w-11/12 md:w-[40rem] h-11/12 md:h-[40rem] grid content-center md:rounded-xl rounded-2xl">
               <div className="text-center text-5xl font-bold mt-5 md:mt-0">
                 <h1>Número de Programa Inválido!!!</h1>
-                <h3>Digite entre 021 e 025!!!</h3>
+                <h3>Digite entre 051 e 055!!!</h3>
               </div>
               <div className="flex justify-center mt-8 mb-5 md:mb-0">
                 <div className="text-3xl mx-4 p-2 font-bold">
